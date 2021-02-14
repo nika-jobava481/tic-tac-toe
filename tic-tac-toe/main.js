@@ -90,7 +90,7 @@ function PCTurn() {
                 o.disabled = true;
             });
         }
-    }, 1000)
+    }, 800)
 }
 
 function changepoints() {
