@@ -8,6 +8,9 @@ var playerPointText = document.querySelector(".player");
 var PCPointText = document.querySelector(".PC");
 var clearLocalStorage = document.querySelector(".clear-local-storage");
 
+var lostSound = new Audio("assets/Sad Trombone Wah Wah Wah Fail Sound Effect.mp3");
+var winSound = new Audio("./assets/Epic Victory - Sound Effect [HD].mp3");
+
 var counter = 1;
 
 var won;
@@ -68,7 +71,7 @@ reloadBtn.addEventListener("click", function () {
     window.location.reload();
 });
 
-clearLocalStorage.addEventListener("click", function(){
+clearLocalStorage.addEventListener("click", function () {
     localStorage.clear();
     window.location.reload();
 });
@@ -90,7 +93,7 @@ function PCTurn() {
                 o.disabled = true;
             });
         }
-    }, 800)
+    }, 1000)
 }
 
 function changepoints() {
@@ -109,6 +112,7 @@ function checkWinProbablity() {
         btnIns[2].textContent == btnIns[4].textContent && btnIns[4].textContent == btnIns[6].textContent && btnIns[6].textContent == player) {
         won = "player-won"
         setTimeout(function () {
+            winSound.play();
             alert("You won");
             localStorage["playerPoint"] = Number(localStorage["playerPoint"]) + 1;
             changepoints();
@@ -124,6 +128,7 @@ function checkWinProbablity() {
         btnIns[2].textContent == btnIns[4].textContent && btnIns[4].textContent == btnIns[6].textContent && btnIns[6].textContent == PC) {
         won = "PC-won"
         setTimeout(function () {
+            lostSound.play();
             alert("PC won");
             localStorage["PCPoint"] = Number(localStorage["PCPoint"]) + 1;
             changepoints();
